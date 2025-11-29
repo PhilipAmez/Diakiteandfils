@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="nav.css">
 </head>
 <body>
   <header>
@@ -103,6 +104,16 @@
       hamburger.classList.toggle('toggle');
     });
 
+    // Shrink header on scroll
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) { // Add 'scrolled' class after 50px of scrolling
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
     // Scroll Animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -164,6 +175,17 @@
 
     prevBtn.onclick = () => showImage(--currentImageIndex);
     nextBtn.onclick = () => showImage(++currentImageIndex);
+
+    // Active Nav Link
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentPage = window.location.pathname.split("/").pop() || 'index.html';
+      const navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    });
 
   </script>
 </body>

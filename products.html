@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
   <style>
     :root {
       --primary-color: #0056b3;
@@ -21,15 +22,6 @@
     *{box-sizing:border-box;margin:0;padding:0;}
     body{background:var(--bg-color);color:var(--text-color);font-family:'Roboto', sans-serif;}
     h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
-    header{background:var(--header-bg);box-shadow:0 2px 4px rgba(0,0,0,0.08);position:sticky;top:0;z-index:1000;}
-    .nav{max-width:1200px;margin:auto;padding:15px;display:flex;align-items:center;justify-content:space-between;}
-    .nav img{height:50px;}
-    .nav-links { display: flex; }
-    .nav-links a{margin:0 15px;text-decoration:none;color:var(--text-color);font-weight:500;transition:color 0.3s ease;}
-    .nav-links a:hover, .nav-links a:focus { color: var(--primary-color); }    
-    .hamburger-menu { display: none; cursor: pointer; }
-    .hamburger-menu .bar { display: block; width: 25px; height: 3px; margin: 5px auto; transition: all 0.3s ease-in-out; background-color: var(--text-color); }
-    #nav-toggle { display: none; }
 
 
     section{max-width:1200px;margin:auto;padding:40px 20px;}
@@ -45,36 +37,6 @@
     footer{background:var(--footer-bg);color:var(--footer-text);text-align:center;padding:30px 20px;}
 
     @media screen and (max-width: 768px) {
-      .nav-links {
-        position: absolute;
-        right: 0;
-        top: 80px; /* Adjust based on header height */
-        background-color: var(--header-bg);
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        transform: translateY(-150%);
-        transition: transform 0.3s ease-in-out;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-      }
-      .nav-links a {
-        margin: 15px 0;
-      }
-      .hamburger-menu {
-        display: block;
-      }
-      #nav-toggle:checked ~ .nav-links {
-        transform: translateY(0);
-      }
-      #nav-toggle:checked ~ .hamburger-menu .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-      }
-      #nav-toggle:checked ~ .hamburger-menu .bar:nth-child(2) {
-        opacity: 0;
-      }
-      #nav-toggle:checked ~ .hamburger-menu .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-      }
       h2.section-title { font-size: 2rem; }
     }
   </style>
@@ -83,18 +45,17 @@
   <header>
     <div class="nav">
      <img src="images/IMG-20251124-WA0048.jpg" alt="Company Logo">
-      <input type="checkbox" id="nav-toggle">
-      <label for="nav-toggle" class="hamburger-menu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </label>
-      <nav class="nav-links">
+      <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="products.html">Products</a>
         <a href="contact.html">Contact</a>
-      </nav>
+      </div>
+      <div class="hamburger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
     </div>
   </header>
 
@@ -157,6 +118,34 @@
   <footer>
     <p>&copy; 2024 DIAKITE AND FILS. All rights reserved.</p>
   </footer>
+  <script>
+    // Mobile Nav Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-active');
+      hamburger.classList.toggle('toggle');
+    });
+    // Shrink header on scroll
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    // Active Nav Link
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentPage = window.location.pathname.split("/").pop();
+      const navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>

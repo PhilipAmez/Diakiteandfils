@@ -1,0 +1,99 @@
+:root {
+    --header-bg: #ffffff;
+}
+
+header {
+    background: var(--header-bg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.nav {
+    max-width: 1200px;
+    margin: auto;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: padding 0.3s ease;
+}
+
+.nav img {
+    height: 50px;
+    transition: height 0.3s ease;
+}
+
+/* Scrolled state for header */
+header.scrolled {
+    background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    backdrop-filter: blur(10px);
+}
+header.scrolled .nav {
+    padding: 5px 15px;
+}
+header.scrolled .nav img {
+    height: 40px;
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--secondary-color);
+    transform-origin: center;
+    transition: transform 0.25s ease-out;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--secondary-color);
+}
+
+.nav-links a:hover::after, .nav-links a.active::after {
+    transform: scaleX(1);
+}
+
+.hamburger {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+/* Toggle classes for hamburger animation */
+.toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+.toggle .line2 { opacity: 0; }
+.toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+
+@media screen and (max-width: 768px) {
+    .nav-links { position: absolute; right: 0; top: 80px; background-color: var(--header-bg); width: 100%; flex-direction: column; align-items: center; transform: translateY(-150%); transition: transform 0.5s ease-in-out; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
+    .nav-links.nav-active { transform: translateY(0); }
+    .nav-links a { padding: 15px; width: 100%; text-align: center; }
+    .hamburger { display: block; }
+}

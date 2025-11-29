@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
   <style>
     :root {
       --primary-color: #0056b3;
@@ -20,34 +21,21 @@
     *{box-sizing:border-box;margin:0;padding:0;}
     body{background:var(--bg-color);color:var(--text-color);font-family:'Roboto', sans-serif;}
     h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
-    header{background:var(--header-bg);box-shadow:0 2px 4px rgba(0,0,0,0.08);position:sticky;top:0;z-index:1000;}
-    .nav{max-width:1200px;margin:auto;padding:15px;display:flex;align-items:center;justify-content:space-between;}
-    .nav img{height:50px;}
-    .nav-links { display: flex; }
-    .nav-links a{margin:0 15px;text-decoration:none;color:var(--text-color);font-weight:500;transition:color 0.3s ease;}
-    .nav-links a:hover, .nav-links a:focus { color: var(--primary-color); }    
-    .hamburger-menu { display: none; cursor: pointer; }
-    .hamburger-menu .bar { display: block; width: 25px; height: 3px; margin: 5px auto; transition: all 0.3s ease-in-out; background-color: var(--text-color); }
-    #nav-toggle { display: none; }
 
     main { max-width: 900px; margin: auto; padding: 40px 20px; background: #fff; margin-top: 30px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
     .product-detail-img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 30px; }
     .product-title { font-size: 2.8rem; margin-bottom: 15px; }
     .product-description p { margin-bottom: 15px; line-height: 1.6; }
     .product-description ul { list-style-position: inside; margin-left: 20px; margin-bottom: 20px; }
-    .back-link { display: inline-block; margin-top: 30px; text-decoration: none; color: var(--primary-color); font-weight: 500; }
+    .action-links { margin-top: 30px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; }
+    .quote-btn { display: inline-block; background: var(--secondary-color); color: white; padding: 12px 20px; border-radius: 5px; text-decoration: none; font-weight: 500; transition: background-color 0.3s ease; }
+    .quote-btn:hover { background-color: #218838; }
+    .back-link { text-decoration: none; color: var(--primary-color); font-weight: 500; }
     .back-link:hover { text-decoration: underline; }
 
     footer{background:var(--footer-bg);color:var(--footer-text);text-align:center;padding:30px 20px;}
 
     @media screen and (max-width: 768px) {
-      .nav-links { position: absolute; right: 0; top: 80px; background-color: var(--header-bg); width: 100%; flex-direction: column; align-items: center; transform: translateY(-150%); transition: transform 0.3s ease-in-out; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
-      .nav-links a { margin: 15px 0; }
-      .hamburger-menu { display: block; }
-      #nav-toggle:checked ~ .nav-links { transform: translateY(0); }
-      #nav-toggle:checked ~ .hamburger-menu .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-      #nav-toggle:checked ~ .hamburger-menu .bar:nth-child(2) { opacity: 0; }
-      #nav-toggle:checked ~ .hamburger-menu .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
       .product-title { font-size: 2.2rem; }
     }
   </style>
@@ -56,18 +44,17 @@
   <header>
     <div class="nav">
      <img src="images/IMG-20251124-WA0048.jpg" alt="Company Logo">
-      <input type="checkbox" id="nav-toggle">
-      <label for="nav-toggle" class="hamburger-menu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </label>
-      <nav class="nav-links">
+      <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="products.html">Products</a>
         <a href="contact.html">Contact</a>
-      </nav>
+      </div>
+      <div class="hamburger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
     </div>
   </header>
 
@@ -87,12 +74,43 @@
       </ul>
       <p>Partner with us for a reliable supply of raw cotton that forms the foundation of superior textile products.</p>
     </div>
-    <a href="products.html" class="back-link">&larr; Back to All Products</a>
+    <div class="action-links">
+      <a href="contact.html?product=Raw Cotton Bales" class="quote-btn">Request a Quote</a>
+      <a href="products.html" class="back-link">&larr; Back to All Products</a>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2024 DIAKITE AND FILS. All rights reserved.</p>
   </footer>
 
+  <script>
+    // Mobile Nav Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-active');
+      hamburger.classList.toggle('toggle');
+    });
+    // Shrink header on scroll
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    // Active Nav Link
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentPage = window.location.pathname.split("/").pop();
+      const navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
 </body>
 </html>

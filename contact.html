@@ -8,6 +8,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="nav.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <style>
     .page-banner {
       height: 300px;
@@ -17,6 +20,75 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .form-and-info-wrapper {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .contact-info {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: Georgia, serif;
+    }
+    .contact-info h3 {
+      margin-top: 0;
+      color: #0056b3; /* A nice dark blue */
+      margin-bottom: 20px;
+    }
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .info-item i {
+      color: #0056b3;
+      margin-top: 5px;
+    }
+    .info-item .whatsapp-icon {
+      color: #25D366; /* WhatsApp Green */
+      font-size: 1.2rem;
+      margin-left: 8px;
+      transition: transform 0.2s ease;
+    }
+    .info-item a:hover .whatsapp-icon {
+      transform: scale(1.2); /* Make icon 20% bigger on hover */
+    }
+    @media (max-width: 768px) {
+      .form-and-info-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+    .maps-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .map-container {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      height: 100%;
+      min-height: 400px; /* Ensure it has a good height */
+    }
+    .map-container h4 {
+      text-align: center;
+      padding: 10px 0;
+      margin: 0;
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+    @media (max-width: 768px) {
+      .maps-wrapper { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -45,15 +117,69 @@
   <main>
     <section id="contact" class="contact">
       <h2 class="section-title">Contact Us</h2>
-      <form action="#" method="POST">
-        <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" placeholder="Your Name" required>
-        <label for="email">Your Email</label>
-        <input type="email" id="email" name="email" placeholder="Your Email" required>
-        <label for="message">Your Message</label>
-        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button> 
-      </form>
+      <div class="contact-wrapper">
+        <div class="form-and-info-wrapper">
+          <form id="contact-form" action="https://formsubmit.co/philipamezuweh@gmail.com" method="POST">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <div id="email-error" class="email-error">Please enter a valid email address.</div>
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+            <!-- Redirect to a thank you page -->
+            <input type="hidden" name="_next" value="https://127.0.0.1:5500//thank-you.html">
+            <!-- Customize the email subject -->
+            <input type="hidden" name="_subject" value="New Contact Form Submission!">
+            <button type="submit">Send Message</button> 
+          </form>
+          <div class="contact-info">
+            <h3>Our Information</h3>
+            <div class="info-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <p><strong>Mali Office:</strong><br>
+                 Placeholder Address, Bamako<br>
+                 Phone: +223 XX XXX XXX
+                 <!-- IMPORTANT: Replace the placeholder number in the href with your actual number -->
+                 <a href="https://wa.me/22300000000" target="_blank"><i class="fa-brands fa-whatsapp whatsapp-icon"></i></a>
+              </p>
+            </div>
+            <div class="info-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <p><strong>Ghana Office:</strong><br>
+                 Placeholder Address, Accra<br>
+                 Phone: +233 XX XXX XXXX
+                 <!-- IMPORTANT: Replace the placeholder number in the href with your actual number -->
+                 <a href="https://wa.me/233000000000" target="_blank"><i class="fa-brands fa-whatsapp whatsapp-icon"></i></a>
+              </p>
+            </div>
+            <div class="info-item">
+              <i class="fa-solid fa-clock"></i>
+              <p><strong>Business Hours:</strong><br>
+                 Monday - Friday: 9am - 6pm<br>
+                 Saturday: 10am - 4pm<br>
+                 Sunday: Closed
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="maps-wrapper">
+          <div class="map-container">
+            <h4>Mali Office Location</h4>
+            <!-- Replace with your actual Mali location embed code -->
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d249223.7123988633!2d-8.12348999656739!3d12.63923349896001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xe51d385defd5c4d%3A0x36b6d17a85d1435!2sBamako%2C%20Mali!5e0!3m2!1sen!2sus!4v1655843358925!5m2!1sen!2sus" 
+              width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+          <div class="map-container">
+            <h4>Ghana Office Location</h4>
+            <!-- Replace with your actual Ghana location embed code -->
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d254124.2303989337!2d-0.3540243452796733!3d5.62530199587399!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9084b2b7a723%3A0x8739d14e91295311!2sAccra%2C%20Ghana!5e0!3m2!1sen!2sus!4v1655843425431!5m2!1sen!2sus" 
+              width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -70,6 +196,16 @@
       hamburger.classList.toggle('toggle');
     });
 
+    // Shrink header on scroll
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
     // Scroll Animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -80,6 +216,51 @@
     }, { threshold: 0.1 });
 
     observer.observe(document.querySelector('.contact'));
+
+    // Pre-fill message box from URL parameter
+    window.addEventListener('DOMContentLoaded', (event) => {
+      const params = new URLSearchParams(window.location.search);
+      const product = params.get('product');
+      if (product) {
+        const messageTextarea = document.getElementById('message');
+        messageTextarea.value = `I would like to request a quote for: ${product}.`;
+      }
+    });
+
+    // Email Validation
+    const contactForm = document.getElementById('contact-form');
+    const emailInput = document.getElementById('email');
+    const emailError = document.getElementById('email-error');
+
+    contactForm.addEventListener('submit', function(event) {
+      // Regular expression for basic email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      if (!emailRegex.test(emailInput.value)) {
+        // Prevent form submission
+        event.preventDefault();
+        
+        // Show error message and style the input
+        emailError.style.display = 'block';
+        emailInput.style.borderColor = '#dc3545';
+        emailInput.focus();
+      } else {
+        // Hide error if it was previously shown
+        emailError.style.display = 'none';
+        emailInput.style.borderColor = ''; // Revert to default
+      }
+    });
+
+    // Active Nav Link
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentPage = window.location.pathname.split("/").pop();
+      const navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    });
   </script>
 </body>
 </html>

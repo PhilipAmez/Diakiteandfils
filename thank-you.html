@@ -3,28 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us - DIAKITE AND FILS</title>
+  <title>Thank You - DIAKITE AND FILS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="nav.css">
   <style>
-    .page-banner {
-      height: 300px;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/IMG-20251124-WA0048.jpg');
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    :root {
+      --primary-color: #0056b3;
+      --secondary-color: #28a745;
+      --text-color: #333;
+      --bg-color: #f8f9fa;
+      --header-bg: #ffffff;
+      --footer-bg: #343a40;
+      --footer-text: #f8f9fa;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg-color);color:var(--text-color);font-family:'Roboto', sans-serif; display: flex; flex-direction: column; min-height: 100vh;}
+    h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+
+    main { text-align: center; padding: 60px 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    main h1 { font-size: 2.5rem; color: var(--secondary-color); margin-bottom: 20px; }
+    main p { font-size: 1.2rem; margin-bottom: 30px; }
+    main a { background: var(--primary-color); color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: 500; transition: background-color 0.3s ease; }
+    main a:hover { background-color: #004494; }
+
+    footer{background:var(--footer-bg);color:var(--footer-text);text-align:center;padding:30px 20px;}
+
+    @media screen and (max-width: 768px) {
     }
   </style>
 </head>
 <body>
   <header>
     <div class="nav">
-      <img src="images/IMG-20251124-WA0048.jpg" alt="Company Logo">
+     <img src="images/IMG-20251124-WA0048.jpg" alt="Company Logo">
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -39,21 +52,15 @@
     </div>
   </header>
 
-  <div class="page-banner">
-    <!-- The banner title is handled by the section below -->
-  </div>
-
   <main>
-    <section id="about" class="about-section">
-      <h2 class="section-title">About Us</h2>
-      <p>We deliver quality goods with excellent customer service. Our mission is to provide reliable products that improve everyday life.</p>
-    </section>
+    <h1>Thank You!</h1>
+    <p>Your message has been sent successfully. We will get back to you shortly.</p>
+    <a href="index.html">Return to Home</a>
   </main>
 
   <footer>
     <p>&copy; 2024 DIAKITE AND FILS. All rights reserved.</p>
   </footer>
-
   <script>
     // Mobile Nav Toggle
     const hamburger = document.querySelector('.hamburger');
@@ -62,7 +69,6 @@
       navLinks.classList.toggle('nav-active');
       hamburger.classList.toggle('toggle');
     });
-
     // Shrink header on scroll
     window.addEventListener('scroll', function() {
       const header = document.querySelector('header');
@@ -72,18 +78,6 @@
         header.classList.remove('scrolled');
       }
     });
-
-    // Scroll Animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    observer.observe(document.querySelector('.about-section'));
-
     // Active Nav Link
     document.addEventListener('DOMContentLoaded', function() {
       const currentPage = window.location.pathname.split("/").pop();
