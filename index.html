@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIAKITE AND FILS - Quality Products & Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <img src="images/IMG-20251124-WA0048.jpg" alt="Company Logo">
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+         <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+       
+      </div>
+      <div class="hamburger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <h1>Welcome to DIAKITE AND FILS</h1>
+      <p>Your trusted source for quality products and services.</p>
+      <button onclick="document.getElementById('products').scrollIntoView({ behavior: 'smooth' });">Browse Products</button>
+    </div>
+    <div class="hero-img">
+      <img src="images/IMG-20251124-WA0048.jpg" alt="Hero Image">
+    </div>
+  </section>
+
+  <section id="products" class="products">
+    <h2 class="section-title">Our Products</h2>
+    <div class="products-grid">
+      <div class="product">
+        <img src="images\IMG-20251124-WA0046.jpg" alt="Fertilizers">
+        <div class="product-info">
+          <h3>High-Quality Fertilizers</h3>
+          <p>We supply a wide range of fertilizers to boost crop yield and ensure healthy growth for various agricultural needs.</p>
+          <button>Learn More</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="images/IMG-20251124-WA0031.jpg" alt="Product 2">
+        <div class="product-info">
+          <h3>Organic Shea Butter</h3>
+          <p>Our pure, unrefined shea butter is handcrafted to preserve its natural moisturizing and healing properties. Ideal for skin care and cosmetic formulations.</p>
+          <button>Learn More</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="images/IMG-20251124-WA0025.jpg" alt="Product 3">
+        <div class="product-info">
+          <h3>Artisanal Hibiscus Tea</h3>
+          <p>Enjoy the vibrant flavor and rich antioxidants of our dried hibiscus flowers. Brew a refreshing tea or use it as a natural coloring in your culinary creations.</p>
+          <button>Learn More</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2 class="section-title">Get In Touch</h2>
+    <form action="#" method="POST">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Your Email" required>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 DIAKITE AND FILS. All rights reserved.</p>
+  </footer>
+
+  <!-- The Modal/Lightbox -->
+  <div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+    <a class="prev">&#10094;</a>
+    <a class="next">&#10095;</a>
+  </div>
+
+  <script>
+    // Mobile Nav Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-active');
+      hamburger.classList.toggle('toggle');
+    });
+
+    // Scroll Animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.hero-text, .products, .contact').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        navLinks.classList.remove('nav-active'); // Close mobile nav on click
+        hamburger.classList.remove('toggle');
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Image Gallery Modal
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImage");
+    const productImages = document.querySelectorAll(".product img");
+    const closeBtn = document.querySelector(".close");
+    const prevBtn = document.querySelector(".prev");
+    const nextBtn = document.querySelector(".next");
+
+    let currentImageIndex;
+
+    productImages.forEach((img, index) => {
+      img.addEventListener("click", () => {
+        modal.style.display = "block";
+        modalImg.src = img.src;
+        currentImageIndex = index;
+      });
+    });
+
+    function showImage(index) {
+      if (index >= productImages.length) { currentImageIndex = 0; }
+      if (index < 0) { currentImageIndex = productImages.length - 1; }
+      modalImg.src = productImages[currentImageIndex].src;
+    }
+
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    prevBtn.onclick = () => showImage(--currentImageIndex);
+    nextBtn.onclick = () => showImage(++currentImageIndex);
+
+  </script>
+</body>
+</html>
