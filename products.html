@@ -26,8 +26,11 @@
     .nav img{height:50px;}
     .nav-links { display: flex; }
     .nav-links a{margin:0 15px;text-decoration:none;color:var(--text-color);font-weight:500;transition:color 0.3s ease;}
-    .nav-links a:hover, .nav-links a:focus { color: var(--primary-color); }
-    .hamburger { display: none; } /* Not needed on this page, but kept for consistency */
+    .nav-links a:hover, .nav-links a:focus { color: var(--primary-color); }    
+    .hamburger-menu { display: none; cursor: pointer; }
+    .hamburger-menu .bar { display: block; width: 25px; height: 3px; margin: 5px auto; transition: all 0.3s ease-in-out; background-color: var(--text-color); }
+    #nav-toggle { display: none; }
+
 
     section{max-width:1200px;margin:auto;padding:40px 20px;}
     h2.section-title { text-align: center; font-size: 2.5rem; margin-bottom: 40px; }
@@ -37,26 +40,61 @@
     .product img{width:100%;height:200px;object-fit:cover;}
     .product-info{padding:15px;}
     .product-info h3{margin-bottom:10px;}
-    .product-info button{padding:8px 15px;border:none;background:var(--secondary-color);color:white;border-radius:5px;cursor:pointer;transition:background-color 0.3s ease;}
-    .product-info button:hover { background-color: #218838; }
+    .product-info .learn-more-btn{display:inline-block;padding:8px 15px;border:none;background:var(--secondary-color);color:white;border-radius:5px;cursor:pointer;transition:background-color 0.3s ease;text-decoration:none;}
+    .product-info .learn-more-btn:hover { background-color: #218838; }
     footer{background:var(--footer-bg);color:var(--footer-text);text-align:center;padding:30px 20px;}
 
     @media screen and (max-width: 768px) {
-      .hamburger { display: block; } /* Show hamburger on mobile */
-      /* Basic mobile nav styles can be added here if needed */
+      .nav-links {
+        position: absolute;
+        right: 0;
+        top: 80px; /* Adjust based on header height */
+        background-color: var(--header-bg);
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        transform: translateY(-150%);
+        transition: transform 0.3s ease-in-out;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+      }
+      .nav-links a {
+        margin: 15px 0;
+      }
+      .hamburger-menu {
+        display: block;
+      }
+      #nav-toggle:checked ~ .nav-links {
+        transform: translateY(0);
+      }
+      #nav-toggle:checked ~ .hamburger-menu .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      #nav-toggle:checked ~ .hamburger-menu .bar:nth-child(2) {
+        opacity: 0;
+      }
+      #nav-toggle:checked ~ .hamburger-menu .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+      h2.section-title { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="nav">
-      <img src="images/company-logo.png" alt="Company Logo">
-      <div class="nav-links">
+     <img src="images/IMG-20251124-WA0048.jpg" alt="Company Logo">
+      <input type="checkbox" id="nav-toggle">
+      <label for="nav-toggle" class="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </label>
+      <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="products.html">Products</a>
         <a href="contact.html">Contact</a>
-      </div>
+      </nav>
     </div>
   </header>
 
@@ -65,27 +103,51 @@
       <h2 class="section-title">Our Products</h2>
       <div class="products-grid">
         <div class="product">
-          <img src="images/IMG-20241124-WA0049.jpg" alt="Product 1">
+          <img src="images/IMG-20251124-WA0046.jpg" alt="Fertilizers">
           <div class="product-info">
-            <h3>Product One</h3>
-            <p>High-quality and reliable. Perfect for your needs.</p>
-            <button>Learn More</button>
+            <h3>High-Quality Fertilizers</h3>
+            <p>We supply a wide range of fertilizers to boost crop yield and ensure healthy growth for various agricultural needs.</p>
+            <a href="fertilizer-detail.html" class="learn-more-btn">Learn More</a>
           </div>
         </div>
         <div class="product">
-          <img src="images/IMG-20241124-WA0050.jpg" alt="Product 2">
+          <img src="images/IMG-20251124-WA0031.jpg" alt="Organic Shea Butter">
           <div class="product-info">
-            <h3>Product Two</h3>
-            <p>Durable and efficient, built to last and perform.</p>
-            <button>Learn More</button>
+            <h3>Organic Shea Butter</h3>
+            <p>Our pure, unrefined shea butter is handcrafted to preserve its natural moisturizing and healing properties. Ideal for skin care and cosmetic formulations.</p>
+            <a href="shea-butter-detail.html" class="learn-more-btn">Learn More</a>
           </div>
         </div>
         <div class="product">
-          <img src="images/IMG-20241124-WA0051.jpg" alt="Product 3">
+          <img src="images/IMG-20251124-WA0025.jpg" alt="Artisanal Hibiscus Tea">
           <div class="product-info">
-            <h3>Product Three</h3>
-            <p>Innovative design meets exceptional functionality.</p>
-            <button>Learn More</button>
+            <h3>Artisanal Hibiscus Tea</h3>
+            <p>Enjoy the vibrant flavor and rich antioxidants of our dried hibiscus flowers. Brew a refreshing tea or use it as a natural coloring in your culinary creations.</p>
+            <a href="hibiscus-tea-detail.html" class="learn-more-btn">Learn More</a>
+          </div>
+        </div>
+        <div class="product">
+          <img src="images/cashew-nuts.jpg" alt="Raw Cashew Nuts">
+          <div class="product-info">
+            <h3>Raw Cashew Nuts</h3>
+            <p>Premium quality raw cashew nuts, sourced directly from local growers. Perfect for snacking, cooking, and exporting.</p>
+            <a href="cashew-nuts-detail.html" class="learn-more-btn">Learn More</a>
+          </div>
+        </div>
+        <div class="product">
+          <img src="images/raw-cotton.jpg" alt="Raw Cotton Bales">
+          <div class="product-info">
+            <h3>Raw Cotton Bales</h3>
+            <p>High-grade raw cotton, carefully harvested and processed. Suitable for textile manufacturing and other industrial uses.</p>
+            <a href="raw-cotton-detail.html" class="learn-more-btn">Learn More</a>
+          </div>
+        </div>
+        <div class="product">
+          <img src="images/gum-arabic.jpg" alt="Gum Arabic">
+          <div class="product-info">
+            <h3>Gum Arabic</h3>
+            <p>Natural gum harvested from acacia trees. A versatile ingredient used in the food industry as a stabilizer and in various industrial applications.</p>
+            <a href="gum-arabic-detail.html" class="learn-more-btn">Learn More</a>
           </div>
         </div>
       </div>

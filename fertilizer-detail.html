@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>High-Quality Fertilizers - DIAKITE AND FILS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #0056b3;
+      --secondary-color: #28a745;
+      --text-color: #333;
+      --bg-color: #f8f9fa;
+      --header-bg: #ffffff;
+      --footer-bg: #343a40;
+      --footer-text: #f8f9fa;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg-color);color:var(--text-color);font-family:'Roboto', sans-serif;}
+    h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+    header{background:var(--header-bg);box-shadow:0 2px 4px rgba(0,0,0,0.08);position:sticky;top:0;z-index:1000;}
+    .nav{max-width:1200px;margin:auto;padding:15px;display:flex;align-items:center;justify-content:space-between;}
+    .nav img{height:50px;}
+    .nav-links { display: flex; }
+    .nav-links a{margin:0 15px;text-decoration:none;color:var(--text-color);font-weight:500;transition:color 0.3s ease;}
+    .nav-links a:hover, .nav-links a:focus { color: var(--primary-color); }    
+    .hamburger-menu { display: none; cursor: pointer; }
+    .hamburger-menu .bar { display: block; width: 25px; height: 3px; margin: 5px auto; transition: all 0.3s ease-in-out; background-color: var(--text-color); }
+    #nav-toggle { display: none; }
+
+    main { max-width: 900px; margin: auto; padding: 40px 20px; background: #fff; margin-top: 30px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+    .product-detail-img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 30px; }
+    .product-title { font-size: 2.8rem; margin-bottom: 15px; }
+    .product-description p { margin-bottom: 15px; line-height: 1.6; }
+    .product-description ul { list-style-position: inside; margin-left: 20px; margin-bottom: 20px; }
+    .back-link { display: inline-block; margin-top: 30px; text-decoration: none; color: var(--primary-color); font-weight: 500; }
+    .back-link:hover { text-decoration: underline; }
+
+    footer{background:var(--footer-bg);color:var(--footer-text);text-align:center;padding:30px 20px;}
+
+    @media screen and (max-width: 768px) {
+      .nav-links { position: absolute; right: 0; top: 80px; background-color: var(--header-bg); width: 100%; flex-direction: column; align-items: center; transform: translateY(-150%); transition: transform 0.3s ease-in-out; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
+      .nav-links a { margin: 15px 0; }
+      .hamburger-menu { display: block; }
+      #nav-toggle:checked ~ .nav-links { transform: translateY(0); }
+      #nav-toggle:checked ~ .hamburger-menu .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      #nav-toggle:checked ~ .hamburger-menu .bar:nth-child(2) { opacity: 0; }
+      #nav-toggle:checked ~ .hamburger-menu .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+      .product-title { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+     <img src="images/IMG-20251124-WA0048.jpg" alt="Company Logo">
+      <input type="checkbox" id="nav-toggle">
+      <label for="nav-toggle" class="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </label>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <img src="images/IMG-20251124-WA0046.jpg" alt="High-Quality Fertilizers" class="product-detail-img">
+    <h1 class="product-title">High-Quality Fertilizers</h1>
+    <div class="product-description">
+      <p>At DIAKITE AND FILS, we provide a comprehensive range of high-quality fertilizers designed to meet the diverse needs of modern agriculture. Our products are formulated to enhance soil fertility, boost crop yield, and promote healthy, sustainable plant growth.</p>
+      <p>Whether you are a small-scale farmer or a large agricultural enterprise, our fertilizers provide the essential nutrients your crops need to thrive.</p>
+      <h3>Key Features:</h3>
+      <ul>
+        <li>Rich in essential nutrients (Nitrogen, Phosphorus, Potassium).</li>
+        <li>Available in various formulations for different soil types and crops.</li>
+        <li>Promotes strong root development and vigorous growth.</li>
+        <li>Improves crop resilience against pests and diseases.</li>
+        <li>Sourced from trusted manufacturers to ensure quality and consistency.</li>
+      </ul>
+      <p>Contact us today to learn more about our fertilizer options and how we can help you achieve a more productive harvest.</p>
+    </div>
+    <a href="products.html" class="back-link">&larr; Back to All Products</a>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 DIAKITE AND FILS. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
